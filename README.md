@@ -1,0 +1,1 @@
+A web-based version of the classic Top Trumps Horror Deck, executed in Laravel 5.6 and React.
