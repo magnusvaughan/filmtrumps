@@ -23,5 +23,10 @@ Route::get('/trumps', function () {
 
     $monster2 = DB::table('monsters')->where('id', '!=', $monster1_id)->get()->random(1);
 
-    return view('trumps')->with(['monster1' => $monster1, 'monster2' => $monster2]);
+    return response()->json(
+        ['monster1' => $monster1, 'monster2' => $monster2]
+    );
+
+    // return view('trumps')->with(['monster1' => $monster1, 'monster2' => $monster2]);
+    // return view('trumps')->with(['monster1' => $monster1, 'monster2' => $monster2]);
 });

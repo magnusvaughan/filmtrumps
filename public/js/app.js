@@ -36304,73 +36304,57 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Example = function (_Component) {
-    _inherits(Example, _Component);
+var Trump = function (_Component) {
+    _inherits(Trump, _Component);
 
-    function Example() {
-        _classCallCheck(this, Example);
+    function Trump() {
+        _classCallCheck(this, Trump);
 
-        return _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).apply(this, arguments));
+        //Initialize the state in the constructor
+        var _this = _possibleConstructorReturn(this, (Trump.__proto__ || Object.getPrototypeOf(Trump)).call(this));
+
+        _this.state = {
+            trumps: []
+        };
+        return _this;
     }
+    /*componentDidMount() is a lifecycle method
+     * that gets called after the component is rendered
+     */
 
-    _createClass(Example, [{
+
+    _createClass(Trump, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            /* fetch API in action */
+            fetch('/trumps').then(function (response) {
+                return response.json();
+            }).then(function (trumps) {
+                //Fetched product is stored in the state
+                _this2.setState({ trumps: trumps });
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { 'class': 'card' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { 'class': 'card-body' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { 'class': 'card_attribute-wrapper' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: '#', 'class': 'btn btn-primary attribute-button', id: 'physicalStrength' },
-                            'Select Physical Strength'
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { 'class': 'card_attribute-wrapper' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: '#', 'class': 'btn btn-primary attribute-button', id: 'fearFactor' },
-                            'Select Fear Factor'
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { 'class': 'card_attribute-wrapper' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: '#', 'class': 'btn btn-primary attribute-button', id: 'killingPower' },
-                            'Select Killing Power'
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { 'class': 'card_attribute-wrapper' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: '#', 'class': 'btn btn-primary attribute-button', id: 'horrorRating' },
-                            'Select Horror Rating'
-                        )
-                    )
-                )
+                'h1',
+                null,
+                JSON.stringify(this.state.trumps.monster1.keys())
             );
         }
     }]);
 
-    return Example;
+    return Trump;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Example);
+/* harmony default export */ __webpack_exports__["default"] = (Trump);
 
 
-if (document.getElementById('example')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example, null), document.getElementById('example'));
+if (document.getElementById('trump')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Trump, null), document.getElementById('trump'));
 }
 
 /***/ }),
