@@ -36304,17 +36304,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Trump = function (_Component) {
-    _inherits(Trump, _Component);
+var Monster = function (_Component) {
+    _inherits(Monster, _Component);
 
-    function Trump() {
-        _classCallCheck(this, Trump);
+    function Monster() {
+        _classCallCheck(this, Monster);
 
         //Initialize the state in the constructor
-        var _this = _possibleConstructorReturn(this, (Trump.__proto__ || Object.getPrototypeOf(Trump)).call(this));
+        var _this = _possibleConstructorReturn(this, (Monster.__proto__ || Object.getPrototypeOf(Monster)).call(this));
 
         _this.state = {
-            trumps: []
+            monster: [],
+            monsterId: null
         };
         return _this;
     }
@@ -36323,38 +36324,70 @@ var Trump = function (_Component) {
      */
 
 
-    _createClass(Trump, [{
+    _createClass(Monster, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
 
             /* fetch API in action */
-            fetch('/trumps').then(function (response) {
+            var monsterId = Math.ceil(Math.random() * 31);
+            this.setState({ monsterId: monsterId });
+
+            fetch('/monsters/' + monsterId).then(function (response) {
                 return response.json();
-            }).then(function (trumps) {
+            }).then(function (monster) {
                 //Fetched product is stored in the state
-                _this2.setState({ trumps: trumps });
+                _this2.setState({ monster: monster });
             });
         }
     }, {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h1',
+                'div',
                 null,
-                JSON.stringify(this.state.trumps.monster1.keys())
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'h1',
+                    null,
+                    this.state.monster.name
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { style: { width: 526 + 'px', height: 480 + 'px' }, src: "/img/" + this.state.monsterId + ".png", alt: '' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'ul',
+                    null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'li',
+                        null,
+                        this.state.monster.physical_strength
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'li',
+                        null,
+                        this.state.monster.fear_factor
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'li',
+                        null,
+                        this.state.monster.killing_power
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'li',
+                        null,
+                        this.state.monster.horror_rating
+                    )
+                )
             );
         }
     }]);
 
-    return Trump;
+    return Monster;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Trump);
+/* harmony default export */ __webpack_exports__["default"] = (Monster);
 
 
-if (document.getElementById('trump')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Trump, null), document.getElementById('trump'));
+if (document.getElementById('monster')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Monster, null), document.getElementById('monster'));
 }
 
 /***/ }),

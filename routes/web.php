@@ -11,22 +11,16 @@
 |
 */
 
+use App\Monster;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/trumps', function () {
+Route::get('monsters/{monster}', function($monsterId) {
 
-    $monster1 = DB::table('monsters')->get()->random(1);
+    $monster = DB::table('monsters')->where('id', '=', $monsterId)->get();
+    
+    return response(Monster::find($monsterId), 200);
 
-    $monster1_id = $monster1[0]->id;
-
-    $monster2 = DB::table('monsters')->where('id', '!=', $monster1_id)->get()->random(1);
-
-    return response()->json(
-        ['monster1' => $monster1, 'monster2' => $monster2]
-    );
-
-    // return view('trumps')->with(['monster1' => $monster1, 'monster2' => $monster2]);
-    // return view('trumps')->with(['monster1' => $monster1, 'monster2' => $monster2]);
 });
