@@ -29,17 +29,16 @@ export default class Monster extends Component {
                 this.setState({ monster });
             });
     }
-
     render() {
         return (
-            <div>
-                <h1>{this.state.monster.name}</h1>
-                <img style={{width: 526 + 'px', height: 480 + 'px'}} src={"/img/" + this.state.monsterId + ".png"} alt=""/>
+            <div className="card">
+                <h5 className="card-title">{this.state.monster.name}</h5>
+                <img className="card-img-top" style={{width: 526 + 'px', height: 480 + 'px'}} src={"/img/" + this.state.monsterId + ".png"} alt=""/>
                 <ul>
-                    <li>{this.state.monster.physical_strength}</li>
-                    <li>{this.state.monster.fear_factor}</li>
-                    <li>{this.state.monster.killing_power}</li>
-                    <li>{this.state.monster.horror_rating}</li>
+                    <li>Physical Strength: {this.state.monster.physical_strength}</li>
+                    <li>Fear Factor: {this.state.monster.fear_factor}</li>
+                    <li>Killing Power: {this.state.monster.killing_power}</li>
+                    <li>Horror Rating: {this.state.monster.horror_rating}</li>
                 </ul>
             </div>
         );
