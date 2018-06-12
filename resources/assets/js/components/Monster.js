@@ -1,34 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Example from './Example';
 
 export default class Monster extends Component {
 
-    constructor() {
-   
-        super();
-        //Initialize the state in the constructor
-        this.state = {
-            monster: [],
-            monsterId: null
-        }
-      }
-      /*componentDidMount() is a lifecycle method
-       * that gets called after the component is rendered
-       */
-      componentDidMount() {
-        /* fetch API in action */
-        const monsterId =  Math.ceil((Math.random() * 31));
-        this.setState({monsterId: monsterId});
-        
-        fetch('/monsters/'+ monsterId )
-            .then(response => {
-                return response.json();
-            })
-            .then(monster => {
-                //Fetched product is stored in the state
-                this.setState({ monster });
-            });
-    }
     render() {
         return (
             <div className="card">
