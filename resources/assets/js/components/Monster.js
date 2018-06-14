@@ -5,7 +5,7 @@ import Example from './Example';
 export default class Monster extends Component {
 
     render() {
-        console.log("propsy", this.props);
+        console.log(this.props);
         return (
             <div className="card">
                 <h2 className="card-title">{this.props.monster.name}</h2>

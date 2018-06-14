@@ -13868,8 +13868,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Monster__ = __webpack_require__(58);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -13886,23 +13884,26 @@ var Example = function (_Component) {
     function Example() {
         _classCallCheck(this, Example);
 
+        //Initialize the state in the constructor
         var _this = _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).call(this));
 
-        var monster1Id = _this.getRandomMonsterId();
-        var monster2Id = _this.getRandomMonsterId();
-        //Initialize the state in the constructor
         _this.state = {
-            monster1Id: monster1Id,
-            monster2Id: monster2Id,
-            monster1: _this.getRandomMonster(monster1Id, 'monster1'),
-            monster2: _this.getRandomMonster(monster2Id, 'monster2')
+            monster1Id: null,
+            monster2Id: null,
+            monster1: null,
+            monster2: null
         };
         return _this;
     }
 
     _createClass(Example, [{
         key: 'componentDidMount',
-        value: function componentDidMount() {}
+        value: function componentDidMount() {
+            this.setState({ monster1Id: this.getRandomMonsterId() });
+            this.setState({ monster2Id: this.getRandomMonsterId() });
+            this.setState({ monster1: this.getRandomMonster(monster1Id) });
+            this.setState({ monster2: this.getRandomMonster(monster2Id) });
+        }
     }, {
         key: 'getRandomMonsterId',
         value: function getRandomMonsterId() {
@@ -13910,50 +13911,55 @@ var Example = function (_Component) {
         }
     }, {
         key: 'getRandomMonster',
-        value: function getRandomMonster(monsterId, stateKey) {
-            var _this2 = this;
-
+        value: function getRandomMonster(monsterId) {
             fetch('/monsters/' + monsterId).then(function (response) {
                 return response.json();
             }).then(function (monster) {
-                //Fetched product is stored in the state
-                _this2.setState(_defineProperty({}, stateKey, monster));
+                return monster;
             });
         }
     }, {
         key: 'render',
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'container' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            if (this.state.monster1 != null) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'container' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'col-md-6' },
+                        { className: 'row' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'h1',
-                            { className: 'text-centered' },
-                            'Horror Trumps'
+                            'div',
+                            { className: 'col-md-6' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'h1',
+                                { className: 'text-centered' },
+                                'Horror Trumps'
+                            )
                         )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'row' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col-md-6' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], { monster: this.state.monster1, monsterId: this.state.monster1Id })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'col-md-6' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], { monster: this.state.monster2, monsterId: this.state.monster2Id })
+                        { className: 'row' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'col-md-6' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], { monster: this.state.monster1, monsterId: this.state.monster1Id })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'col-md-6' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], { monster: this.state.monster2, monsterId: this.state.monster2Id })
+                        )
                     )
-                )
-            );
+                );
+            } else {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    null,
+                    'LOADING'
+                );
+            }
         }
     }]);
 
@@ -55694,7 +55700,7 @@ var Monster = function (_Component) {
     _createClass(Monster, [{
         key: 'render',
         value: function render() {
-            console.log("propsy", this.props);
+            console.log(this.props);
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'card' },
