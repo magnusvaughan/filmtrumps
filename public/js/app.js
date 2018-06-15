@@ -13888,10 +13888,13 @@ var Example = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).call(this));
 
         _this.state = {
-            monster1Id: null,
-            monster2Id: null,
-            monster1: null,
-            monster2: null
+            monstersLoaded: false,
+            monster1Id: _this.getRandomMonsterId(),
+            monster2Id: _this.getRandomMonsterId(),
+            monster1: 1,
+            monster2: 1,
+            monster1Flipped: false,
+            monster2Flipped: true
         };
         return _this;
     }
@@ -13899,10 +13902,7 @@ var Example = function (_Component) {
     _createClass(Example, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.setState({ monster1Id: this.getRandomMonsterId() });
-            this.setState({ monster2Id: this.getRandomMonsterId() });
-            this.setState({ monster1: this.getRandomMonster(monster1Id) });
-            this.setState({ monster2: this.getRandomMonster(monster2Id) });
+            this.setMonsters(this.state.monster1Id, this.state.monster2Id);
         }
     }, {
         key: 'getRandomMonsterId',
@@ -13910,18 +13910,24 @@ var Example = function (_Component) {
             return Math.ceil(Math.random() * 31);
         }
     }, {
-        key: 'getRandomMonster',
-        value: function getRandomMonster(monsterId) {
-            fetch('/monsters/' + monsterId).then(function (response) {
+        key: 'setMonsters',
+        value: function setMonsters(monster1Id, monster2Id) {
+            var _this2 = this;
+
+            fetch('/monsters/' + monster1Id).then(function (response) {
                 return response.json();
-            }).then(function (monster) {
-                return monster;
-            });
+            }).then(function (monster1) {
+                _this2.setState({ monster1: monster1 });
+            }).then(fetch('/monsters/' + monster2Id).then(function (response) {
+                return response.json();
+            }).then(function (monster2) {
+                _this2.setState({ monster2: monster2 });
+            })).then(this.setState({ monstersLoaded: true }));
         }
     }, {
         key: 'render',
         value: function render() {
-            if (this.state.monster1 != null) {
+            if (this.state.monstersLoaded) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'container' },
@@ -13944,21 +13950,27 @@ var Example = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'col-md-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], { monster: this.state.monster1, monsterId: this.state.monster1Id })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], {
+                                monster: this.state.monster1,
+                                monsterId: this.state.monster1Id,
+                                monstersLoaded: this.state.monsterLoaded,
+                                monsterFlipped: this.state.monster1Flipped
+                            })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'col-md-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], { monster: this.state.monster2, monsterId: this.state.monster2Id })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], {
+                                monster: this.state.monster2,
+                                monsterId: this.state.monster2Id,
+                                monstersLoaded: this.state.monsterLoaded,
+                                monsterFlipped: this.state.monster2Flipped
+                            })
                         )
                     )
                 );
             } else {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    null,
-                    'LOADING'
-                );
+                return null;
             }
         }
     }]);
@@ -55700,10 +55712,9 @@ var Monster = function (_Component) {
     _createClass(Monster, [{
         key: 'render',
         value: function render() {
-            console.log(this.props);
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'card' },
+                { className: "card " + (this.props.monsterFlipped ? 'flipped' : '') },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'h2',
                     { className: 'card-title' },

@@ -8,36 +8,48 @@ export default class Example extends Component {
         super();
         //Initialize the state in the constructor
         this.state = {
-            monster1Id: null,
-            monster2Id: null,
-            monster1: null,
-            monster2: null
+            monstersLoaded: false,
+            monster1Id: this.getRandomMonsterId(),
+            monster2Id: this.getRandomMonsterId(),
+            monster1: 1,
+            monster2: 1,
+            monster1Flipped: false,
+            monster2Flipped: true
         };
     }
 
     componentDidMount() {
-       this.setState({monster1Id:this.getRandomMonsterId()});
-       this.setState({monster2Id:this.getRandomMonsterId()});
-       this.setState({monster1: this.getRandomMonster(monster1Id)});
-       this.setState({monster2: this.getRandomMonster(monster2Id)});
+       this.setMonsters(this.state.monster1Id, this.state.monster2Id);
     }
 
     getRandomMonsterId() {
         return Math.ceil((Math.random() * 31));
     }
 
-    getRandomMonster(monsterId) {
-        fetch('/monsters/'+ monsterId )
+    setMonsters(monster1Id, monster2Id) {
+        fetch('/monsters/'+ monster1Id )
         .then(response => {
             return response.json();
         })
-        .then(monster => {
-            return monster;
-        });
+        .then(monster1 => {
+            this.setState({monster1: monster1});
+        })
+        .then(
+            fetch('/monsters/'+ monster2Id )
+            .then(response => {
+                return response.json();
+            })
+            .then(monster2 => {
+                this.setState({monster2: monster2});
+            })
+        )
+        .then(
+            this.setState({monstersLoaded: true})
+        )
     }
 
     render() {
-        if(this.state.monster1!=null) {
+        if(this.state.monstersLoaded) {
             return (
                 <div className="container">
                     <div className="row">
@@ -47,10 +59,20 @@ export default class Example extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-6">
-                            <Monster monster={this.state.monster1} monsterId={this.state.monster1Id} />
+                            <Monster 
+                            monster={this.state.monster1} 
+                            monsterId={this.state.monster1Id} 
+                            monstersLoaded={this.state.monsterLoaded} 
+                            monsterFlipped={this.state.monster1Flipped}
+                            />
                         </div>
                         <div className="col-md-6">
-                            <Monster monster={this.state.monster2} monsterId={this.state.monster2Id} />
+                            <Monster 
+                            monster={this.state.monster2} 
+                            monsterId={this.state.monster2Id} 
+                            monstersLoaded={this.state.monsterLoaded}
+                            monsterFlipped={this.state.monster2Flipped} 
+                            />
                         </div>
                     </div>
                 </div>
@@ -58,9 +80,7 @@ export default class Example extends Component {
         }
         else {
             return (
-                <div>
-                    LOADING
-                </div>
+                null
             )
         }
 

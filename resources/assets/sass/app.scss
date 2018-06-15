@@ -20,15 +20,26 @@ h1,h2 {
 
 .card {
   border: 2px solid #000000;
+  transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+  background-image: url("../../../public/img/back.png");
+  background-size: cover;
 }
 
 img.card-img-top {
   margin: 0 0.5rem 0 0.3rem;
   border: 2px solid #000000;
+  backface-visibility: hidden;
 }
 
 .card ul {
   padding: 0;
+  backface-visibility: hidden;
 }
 
 .card ul li {
@@ -41,5 +52,6 @@ img.card-img-top {
 .card-title {
   text-align: center;
   padding: 0.5rem 1rem;
+  backface-visibility: hidden;
 }
 

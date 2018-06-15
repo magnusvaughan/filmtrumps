@@ -10425,15 +10425,31 @@ h2 {
 
 .card {
   border: 2px solid #000000;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.flipped {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  background-image: url(/images/back.png?d19e0032e73d86cee0174613943b4101);
+  background-size: cover;
 }
 
 img.card-img-top {
   margin: 0 0.5rem 0 0.3rem;
   border: 2px solid #000000;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 .card ul {
   padding: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 .card ul li {
@@ -10450,5 +10466,7 @@ img.card-img-top {
 .card-title {
   text-align: center;
   padding: 0.5rem 1rem;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 

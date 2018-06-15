@@ -5,9 +5,8 @@ import Example from './Example';
 export default class Monster extends Component {
 
     render() {
-        console.log(this.props);
         return (
-            <div className="card">
+            <div className={"card " + (this.props.monsterFlipped ? 'flipped' : '')}>
                 <h2 className="card-title">{this.props.monster.name}</h2>
                 <img className="card-img-top" style={{width: 526 + 'px', height: 480 + 'px'}} src={"/img/" + this.props.monsterId + ".png"} alt=""/>
                 <ul>
