@@ -13884,9 +13884,9 @@ var Example = function (_Component) {
     function Example() {
         _classCallCheck(this, Example);
 
-        //Initialize the state in the constructor
         var _this = _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).call(this));
 
+        _this.handleClick = _this.handleClick.bind(_this);
         _this.state = {
             monstersLoaded: false,
             monster1Id: _this.getRandomMonsterId(),
@@ -13925,6 +13925,19 @@ var Example = function (_Component) {
             })).then(this.setState({ monstersLoaded: true }));
         }
     }, {
+        key: 'handleClick',
+        value: function handleClick(property) {
+            var otherMonsterProperty = this.state.monster2[Object.keys(property)];
+            this.setState({ monster2Flipped: false });
+            if (property[Object.keys(property)] < otherMonsterProperty) {
+                alert("You Lost");
+            } else if (property[Object.keys(property)] == otherMonsterProperty) {
+                alert("You Drew");
+            } else if (property[Object.keys(property)] > otherMonsterProperty) {
+                alert("You Won");
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             if (this.state.monstersLoaded) {
@@ -13954,7 +13967,8 @@ var Example = function (_Component) {
                                 monster: this.state.monster1,
                                 monsterId: this.state.monster1Id,
                                 monstersLoaded: this.state.monsterLoaded,
-                                monsterFlipped: this.state.monster1Flipped
+                                monsterFlipped: this.state.monster1Flipped,
+                                handleClick: this.handleClick
                             })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -55712,6 +55726,8 @@ var Monster = function (_Component) {
     _createClass(Monster, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: "card " + (this.props.monsterFlipped ? 'flipped' : '') },
@@ -55730,7 +55746,9 @@ var Monster = function (_Component) {
                         'Physical Strength:',
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
-                            { type: 'button', className: 'btn btn-danger' },
+                            { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
+                                    return _this2.props.handleClick({ physical_strength: _this2.props.monster.physical_strength });
+                                } },
                             this.props.monster.physical_strength
                         )
                     ),
@@ -55740,7 +55758,9 @@ var Monster = function (_Component) {
                         'Fear Factor:',
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
-                            { type: 'button', className: 'btn btn-danger' },
+                            { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
+                                    return _this2.props.handleClick({ fear_factor: _this2.props.monster.fear_factor });
+                                } },
                             this.props.monster.fear_factor
                         )
                     ),
@@ -55750,7 +55770,9 @@ var Monster = function (_Component) {
                         'Killing Power:',
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
-                            { type: 'button', className: 'btn btn-danger' },
+                            { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
+                                    return _this2.props.handleClick({ killing_power: _this2.props.monster.killing_power });
+                                } },
                             this.props.monster.killing_power
                         )
                     ),
@@ -55760,7 +55782,9 @@ var Monster = function (_Component) {
                         'Horror Rating:',
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
-                            { type: 'button', className: 'btn btn-danger' },
+                            { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
+                                    return _this2.props.handleClick({ horror_rating: _this2.props.monster.horror_rating });
+                                } },
                             this.props.monster.horror_rating
                         )
                     )

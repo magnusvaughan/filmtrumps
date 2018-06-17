@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom';
 import Monster from './Monster';
 
 export default class Example extends Component {
-    constructor() {
-    
+    constructor() {    
         super();
-        //Initialize the state in the constructor
+        this.handleClick = this.handleClick.bind(this);
         this.state = {
             monstersLoaded: false,
             monster1Id: this.getRandomMonsterId(),
@@ -48,6 +47,20 @@ export default class Example extends Component {
         )
     }
 
+    handleClick(property) {
+        var otherMonsterProperty = this.state.monster2[Object.keys(property)];
+        this.setState({monster2Flipped: false});
+        if(property[Object.keys(property)] < otherMonsterProperty) {
+            alert("You Lost");
+        }
+        else if(property[Object.keys(property)] == otherMonsterProperty) {
+            alert("You Drew");
+        }
+        else if(property[Object.keys(property)] > otherMonsterProperty) {
+            alert("You Won");
+        }
+    }
+
     render() {
         if(this.state.monstersLoaded) {
             return (
@@ -64,6 +77,7 @@ export default class Example extends Component {
                             monsterId={this.state.monster1Id} 
                             monstersLoaded={this.state.monsterLoaded} 
                             monsterFlipped={this.state.monster1Flipped}
+                            handleClick={this.handleClick}
                             />
                         </div>
                         <div className="col-md-6">
