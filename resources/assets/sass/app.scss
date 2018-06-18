@@ -13,6 +13,14 @@ h1,h2 {
   color: #f50028;
 }
 
+h1 {
+  font-size: 4rem;
+}
+
+.text-centered {
+  text-align: center;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -35,6 +43,7 @@ img.card-img-top {
   margin: 0 0.5rem 0 0.3rem;
   border: 2px solid #000000;
   backface-visibility: hidden;
+  align-self: center;
 }
 
 .card ul {
@@ -55,3 +64,8 @@ img.card-img-top {
   backface-visibility: hidden;
 }
 
+.modal-message {
+  font-family: 'Creepster', cursive!important;
+  font-size: 5rem;
+  color: #f50028;
+}

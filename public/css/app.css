@@ -10417,6 +10417,14 @@ h2 {
   color: #f50028;
 }
 
+h1 {
+  font-size: 4rem;
+}
+
+.text-centered {
+  text-align: center;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10444,6 +10452,8 @@ img.card-img-top {
   border: 2px solid #000000;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
 .card ul {
@@ -10468,5 +10478,11 @@ img.card-img-top {
   padding: 0.5rem 1rem;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+}
+
+.modal-message {
+  font-family: "Creepster", cursive !important;
+  font-size: 5rem;
+  color: #f50028;
 }
 

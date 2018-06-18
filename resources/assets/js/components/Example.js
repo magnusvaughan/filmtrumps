@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Monster from './Monster';
+import Modal from 'react-modal';
+
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+};
+
+Modal.setAppElement('#example');
 
 export default class Example extends Component {
     constructor() {    
@@ -13,8 +27,14 @@ export default class Example extends Component {
             monster1: 1,
             monster2: 1,
             monster1Flipped: false,
-            monster2Flipped: true
+            monster2Flipped: true,
+            modalIsOpen: false,
+            modalMessage:""
         };
+
+        this.openModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentDidMount() {
@@ -22,8 +42,22 @@ export default class Example extends Component {
     }
 
     getRandomMonsterId() {
-        return Math.ceil((Math.random() * 31));
+        return Math.ceil((Math.random() * 64));
     }
+
+    openModal() {
+        this.setState({modalIsOpen: true});
+    }
+
+    afterOpenModal() {
+        // references are now sync'd and can be accessed.
+    }
+    
+    closeModal() {
+        this.setState({modalIsOpen: false});
+        window.location.reload();
+    }
+    
 
     setMonsters(monster1Id, monster2Id) {
         fetch('/monsters/'+ monster1Id )
@@ -51,44 +85,62 @@ export default class Example extends Component {
         var otherMonsterProperty = this.state.monster2[Object.keys(property)];
         this.setState({monster2Flipped: false});
         if(property[Object.keys(property)] < otherMonsterProperty) {
-            alert("You Lost");
+            console.log("You lost");
+            this.setState({modalMessage: 'You Lost'});
+            this.openModal();
         }
         else if(property[Object.keys(property)] == otherMonsterProperty) {
-            alert("You Drew");
+            console.log("You drew");
+            this.setState({modalMessage: 'You Drew'});
+            this.openModal();
         }
         else if(property[Object.keys(property)] > otherMonsterProperty) {
-            alert("You Won");
+            this.setState({modalMessage: 'You Won'});
+            this.openModal();
         }
+
     }
 
     render() {
         if(this.state.monstersLoaded) {
             return (
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <h1 className="text-centered">Horror Trumps</h1>
+                <div>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <h1 className="text-centered">Horror Trumps</h1>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <Monster 
+                                monster={this.state.monster1} 
+                                monsterId={this.state.monster1Id} 
+                                monstersLoaded={this.state.monsterLoaded} 
+                                monsterFlipped={this.state.monster1Flipped}
+                                handleClick={this.handleClick}
+                                />
+                            </div>
+                            <div className="col-md-6">
+                                <Monster 
+                                monster={this.state.monster2} 
+                                monsterId={this.state.monster2Id} 
+                                monstersLoaded={this.state.monsterLoaded}
+                                monsterFlipped={this.state.monster2Flipped} 
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <Monster 
-                            monster={this.state.monster1} 
-                            monsterId={this.state.monster1Id} 
-                            monstersLoaded={this.state.monsterLoaded} 
-                            monsterFlipped={this.state.monster1Flipped}
-                            handleClick={this.handleClick}
-                            />
-                        </div>
-                        <div className="col-md-6">
-                            <Monster 
-                            monster={this.state.monster2} 
-                            monsterId={this.state.monster2Id} 
-                            monstersLoaded={this.state.monsterLoaded}
-                            monsterFlipped={this.state.monster2Flipped} 
-                            />
-                        </div>
-                    </div>
+                    <Modal
+                        isOpen={this.state.modalIsOpen}
+                        onAfterOpen={this.afterOpenModal}
+                        onRequestClose={this.closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                    >
+                    <div className="modal-message">{this.state.modalMessage}</div>
+                    <button onClick={this.closeModal}>close</button>
+                    </Modal>
                 </div>
             );
         }
