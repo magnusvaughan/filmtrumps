@@ -8,7 +8,7 @@ export default class Monster extends Component {
         return (
             <div className={"card " + (this.props.monsterFlipped ? 'flipped' : 'unflipped')}>
                 <h2 className="card-title">{this.props.monster.name}</h2>
-                <img className="card-img-top" style={{width: 426 + 'px', height: 380 + 'px'}} src={"/img/" + this.props.monsterId + ".png"} alt=""/>
+                <img className="card-img-top" src={"/img/" + this.props.monsterId + ".png"} alt=""/>
                 <ul>
                     <li>Physical Strength: 
                     <button type="button" className="btn btn-danger" onClick={() => this.props.handleClick({physical_strength: this.props.monster.physical_strength})}>{this.props.monster.physical_strength}</button>

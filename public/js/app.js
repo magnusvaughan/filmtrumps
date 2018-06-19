@@ -56002,7 +56002,7 @@ var Monster = function (_Component) {
                     { className: 'card-title' },
                     this.props.monster.name
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'card-img-top', style: { width: 426 + 'px', height: 380 + 'px' }, src: "/img/" + this.props.monsterId + ".png", alt: '' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'card-img-top', src: "/img/" + this.props.monsterId + ".png", alt: '' }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'ul',
                     null,
