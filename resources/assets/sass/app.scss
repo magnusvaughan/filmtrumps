@@ -34,45 +34,67 @@ h1 {
   // background-image: url("../../../public/img/front-background.jpg");
   border-radius: 5px;
   background-color: #DDCA59;
-  border: 6px solid black;
+  border: 12px solid white;
+  margin: 0 3rem;
+  max-height: 700px;
 }
 
 .card.flipped {
   transform: rotateY(180deg);
   background-image: url("../../../public/img/back.png");
-  background-size: cover;
+  background-size: 420px 700px;
+  padding: 2rem;
+  height: 700px;
+  max-height: 700px;
 }
 
 img.card-img-top {
-  margin: 0 0.5rem 0 0.3rem;
+  margin: 0;
   border: 2px solid #000000;
   backface-visibility: hidden;
   align-self: center;
   width: 100%;
-  height: auto;;
+  height: auto;
 }
 
 .card ul {
   padding: 0;
   backface-visibility: hidden;
+  margin: 0;
 }
 
 .card ul li {
   padding: 0 3rem;
   display:flex;
   justify-content: space-between;
-  margin: 1rem 0;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
   font-size: 1rem;
-  color: #f50028;
+  color: #000000;
+  font-weight: 800; 
+  border: 6px solid #000000;
+  align-items: center;
+  &:first-of-type{
+    border-top: 12px solid #000000;
+  }
 }
 
 .card-title {
   text-align: center;
   color: black;
   padding: 0.5rem 1rem;
+  margin-bottom: 0;
   backface-visibility: hidden;
   background-color: #DDCA59;
   border-bottom: 6px solid black;
+}
+
+.attribute-button {
+  font-size: 1rem;
+  color: #000000;
+  background-color: #DDCA59;
+  border: none;
+  font-weight: 800;
 }
 
 .modal-message {

@@ -56012,7 +56012,7 @@ var Monster = function (_Component) {
                         'Physical Strength:',
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
-                            { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
+                            { type: 'button', className: 'btn attribute-button', onClick: function onClick() {
                                     return _this2.props.handleClick({ physical_strength: _this2.props.monster.physical_strength });
                                 } },
                             this.props.monster.physical_strength
@@ -56024,7 +56024,7 @@ var Monster = function (_Component) {
                         'Fear Factor:',
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
-                            { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
+                            { type: 'button', className: 'btn attribute-button', onClick: function onClick() {
                                     return _this2.props.handleClick({ fear_factor: _this2.props.monster.fear_factor });
                                 } },
                             this.props.monster.fear_factor
@@ -56036,7 +56036,7 @@ var Monster = function (_Component) {
                         'Killing Power:',
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
-                            { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
+                            { type: 'button', className: 'btn attribute-button', onClick: function onClick() {
                                     return _this2.props.handleClick({ killing_power: _this2.props.monster.killing_power });
                                 } },
                             this.props.monster.killing_power
@@ -56048,7 +56048,7 @@ var Monster = function (_Component) {
                         'Horror Rating:',
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
-                            { type: 'button', className: 'btn btn-danger', onClick: function onClick() {
+                            { type: 'button', className: 'btn attribute-button', onClick: function onClick() {
                                     return _this2.props.handleClick({ horror_rating: _this2.props.monster.horror_rating });
                                 } },
                             this.props.monster.horror_rating
