@@ -14223,7 +14223,7 @@ var Example = function (_Component) {
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'container' },
+                        { className: 'container-fluid' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'row' },
@@ -14232,7 +14232,7 @@ var Example = function (_Component) {
                                 { className: 'col-md-12' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'h1',
-                                    { className: 'text-centered' },
+                                    { className: 'text-centered animated fade-in' },
                                     'Horror Trumps'
                                 )
                             )
@@ -14242,7 +14242,7 @@ var Example = function (_Component) {
                             { className: 'row' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
-                                { className: 'col-md-6' },
+                                { className: 'col-md-4 offset-md-1' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], {
                                     monster: this.state.monster1,
                                     monsterId: this.state.monster1Id,
@@ -14253,7 +14253,20 @@ var Example = function (_Component) {
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
-                                { className: 'col-md-6' },
+                                { className: 'col-md-2' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'div',
+                                    { className: 'versus-wrapper' },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'h1',
+                                        { className: 'versus' },
+                                        'VS'
+                                    )
+                                )
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'col-md-4' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Monster__["a" /* default */], {
                                     monster: this.state.monster2,
                                     monsterId: this.state.monster2Id,
@@ -14280,7 +14293,7 @@ var Example = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
                             { onClick: this.closeModal },
-                            'close'
+                            'Play again...'
                         )
                     )
                 );

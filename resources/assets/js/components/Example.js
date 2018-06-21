@@ -105,14 +105,14 @@ export default class Example extends Component {
         if(this.state.monstersLoaded) {
             return (
                 <div>
-                    <div className="container">
+                    <div className="container-fluid">
                         <div className="row">
                             <div className="col-md-12">
-                                <h1 className="text-centered">Horror Trumps</h1>
+                                <h1 className="text-centered animated fade-in">Horror Trumps</h1>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-md-4 offset-md-1">
                                 <Monster 
                                 monster={this.state.monster1} 
                                 monsterId={this.state.monster1Id} 
@@ -121,7 +121,12 @@ export default class Example extends Component {
                                 handleClick={this.handleClick}
                                 />
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-2">
+                                <div className="versus-wrapper">
+                                    <h1 className="versus">VS</h1>  
+                                </div> 
+                            </div>
+                            <div className="col-md-4">
                                 <Monster 
                                 monster={this.state.monster2} 
                                 monsterId={this.state.monster2Id} 
@@ -139,7 +144,7 @@ export default class Example extends Component {
                         contentLabel="Example Modal"
                     >
                     <div className="modal-message">{this.state.modalMessage}</div>
-                    <button onClick={this.closeModal}>close</button>
+                    <button onClick={this.closeModal}>Play again...</button>
                     </Modal>
                 </div>
             );

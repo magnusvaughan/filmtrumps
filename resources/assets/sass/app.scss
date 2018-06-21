@@ -8,13 +8,69 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body {
+  background: black;
+  -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 3s; /* Firefox < 16 */
+   -ms-animation: fadein 3s; /* Internet Explorer */
+    -o-animation: fadein 3s; /* Opera < 12.1 */
+       animation: fadein 3s;
+}
+
 h1,h2 {
   font-family: 'Creepster', cursive!important;
-  color: #f50028;
+  color: white;
 }
 
 h1 {
   font-size: 4rem;
+  -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 4s; /* Firefox < 16 */
+   -ms-animation: fadein 4s; /* Internet Explorer */
+    -o-animation: fadein 4s; /* Opera < 12.1 */
+       animation: fadein 4s;
+  -webkit-text-stroke-width: 2px;
+   -webkit-text-stroke-color: #f50028;
+}
+
+.versus-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1.versus {
+  text-align: center;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .text-centered {
@@ -37,15 +93,17 @@ h1 {
   border: 12px solid white;
   margin: 0 3rem;
   max-height: 700px;
+  font-size: 4rem;
 }
 
 .card.flipped {
   transform: rotateY(180deg);
   background-image: url("../../../public/img/back.png");
-  background-size: 420px 700px;
+  background-size: 425px 700px;
   padding: 2rem;
   height: 700px;
   max-height: 700px;
+  border: 9px solid white;
 }
 
 img.card-img-top {
@@ -100,5 +158,39 @@ img.card-img-top {
 .modal-message {
   font-family: 'Creepster', cursive!important;
   font-size: 5rem;
-  color: #f50028;
+  color: white;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #f50028;
+}
+
+.ReactModal__Content {
+  background: black!important;
+  display:flex;
+  flex-direction:column;
+  border: none!important;
+  button {
+    transition: all 1s;
+    color: #f50028;
+    background: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #f50028;
+    font-weight: 200;
+    border: none!important;
+    font-family: 'Creepster', cursive!important;
+    font-size: 2.25rem;
+    color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #f50028;
+    &:hover {
+      color: #ff2d50;
+      -webkit-text-stroke-color: white;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.ReactModal__Overlay {
+  background-color: transparent!important;
 }
