@@ -10553,13 +10553,18 @@ img.card-img-top {
   color: #000000;
   font-weight: 800;
   border: 6px solid #000000;
+  border-bottom: 3px solid #000000;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
 .card ul li:first-of-type {
-  border-top: 12px solid #000000;
+  border-top: 6px solid #000000;
+}
+
+.card ul li:last-of-type {
+  border-bottom: 8px solid #000000;
 }
 
 .card-title {
