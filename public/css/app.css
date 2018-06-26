@@ -10514,9 +10514,9 @@ h1.versus {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
   background-image: url(/images/back.png?ebff3171a859b636a33afa25c31e2431);
-  background-size: 425px 700px;
+  background-size: 100% 100%;
   padding: 2rem;
-  height: 700px;
+  max-height: 700px;
   max-height: 700px;
   border: 9px solid white;
 }

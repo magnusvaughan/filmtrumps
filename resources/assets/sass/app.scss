@@ -99,9 +99,9 @@ h1.versus {
 .card.flipped {
   transform: rotateY(180deg);
   background-image: url("../../../public/img/back.png");
-  background-size: 425px 700px;
+  background-size: 100% 100%;
   padding: 2rem;
-  height: 700px;
+  max-height: 700px;
   max-height: 700px;
   border: 9px solid white;
 }
